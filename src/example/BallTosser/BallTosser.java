@@ -14,8 +14,9 @@ import javax.swing.JPanel;
    a given direction, and then is subject to a gravitational pull as it
    bounces off the sides of the window.
 
-   This version uses the ThreadGraphicsController and AnimatedObject classes
-   from the edu.siena.csis225.threadgraphics package.
+   This version uses the ThreadGraphicsController and
+   AnimatedGraphicsObject classes from the
+   edu.siena.csis225.threadgraphics package.
 
    @author Jim Teresco
    @version Spring 2020
@@ -64,6 +65,7 @@ public class BallTosser extends ThreadGraphicsController implements MouseListene
        @param p the JPanel to which the mouse listeners will be
        attached
     */
+    @Override
     protected void addListeners(JPanel panel) {
 
 	panel.addMouseListener(this);
@@ -111,7 +113,9 @@ public class BallTosser extends ThreadGraphicsController implements MouseListene
 				    SLING_FACTOR*(pressPoint.x - e.getPoint().x),
 				    SLING_FACTOR*(pressPoint.y - e.getPoint().y),
 				    panel);
-	list.add(newBall);
+	synchronized (lock) {
+	    list.add(newBall);
+	}
 
 	newBall.start();
 	dragging = false;

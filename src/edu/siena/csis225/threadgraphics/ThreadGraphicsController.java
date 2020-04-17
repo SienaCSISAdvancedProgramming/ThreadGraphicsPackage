@@ -35,7 +35,7 @@ public class ThreadGraphicsController implements Runnable {
 
     /** an object to serve as the lock for thread safety of our list
 	access */
-    private Object lock = new Object();
+    protected Object lock = new Object();
 
     // thisTGC is a copy of the this reference of this object
     // so we can access it in the paintComponent method (where
