@@ -133,7 +133,5 @@ class BouncingGravityBall extends AnimatedGraphicsObject {
 	    
 	    container.repaint();
 	}
-
-	done = true;
     }
 }
